@@ -23,7 +23,7 @@ class FWBase:
 
         self.request(request_type, url, headers, body, status_code, response)
 
-    @allure.step('request')
+    @allure.step('test')
     def request(self, request_type=None, url=None, headers=None, body=None, status_code=None, response=None):
         pass
 

@@ -4,7 +4,7 @@ import pytest
 from Test.api_tests.api_base import ApiBase
 
 
-@allure.feature('Api - request')
+@allure.feature('Api - test')
 @allure.story('Создание заявки')
 class TestApiCreateRequest(ApiBase):
 
@@ -24,8 +24,7 @@ class TestApiCreateRequest(ApiBase):
         request = self.create_request({"serviceId": service_name, "descriptionContent": [description]})
 
         # Сравниваем значения созданного тикета с ожидаемыми значениями
-        assert request['ticketType'] == 'request'
+        assert request['ticketType'] == 'test'
         assert request['gandivaService']['name'] == service_name
         assert request['descriptions'][0]['contentParts'][0]['text'] == description
         assert request['initiator']['id'] == self.users[initiator]['user_id']
-        # TODO добавить проверки, проверять всё что было отправлено в запросе на создание (услуга, инициатор, описание)

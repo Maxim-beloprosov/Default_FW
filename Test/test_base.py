@@ -26,7 +26,7 @@ class TestBase:
 
     @allure.step('Создание заявки.')
     def create_request(self, request_mass={}):
-        response = self.create_tickets(request_mass, ticket_type='request')
+        response = self.create_tickets(request_mass, ticket_type='test')
         return response
 
     @allure.step('Создание проекта.')
@@ -242,7 +242,7 @@ class TestBase:
         if "laboriousness" in tickets_mass: json_request["laboriousness"] = tickets_mass["laboriousness"]
 
         # -------serviceId-----------------------
-        if ticket_type == 'request':
+        if ticket_type == 'test':
             if "serviceId" in tickets_mass:
                 json_request["serviceId"] = self.get_service_id(tickets_mass["serviceId"])
             else:
@@ -254,7 +254,7 @@ class TestBase:
         # -------attachments----------------------
         if "attachments" in tickets_mass: json_request["attachments"] = tickets_mass["attachments"]
 
-        if ticket_type == 'request':
+        if ticket_type == 'test':
             response = self.APP.api_requests.post_requests(json_request)
             return response
         if ticket_type == 'Task':
@@ -318,7 +318,7 @@ class TestBase:
         if "Description" in tickets_mass:
             description = tickets_mass["Description"]
         else:
-            description = 'API Test request ' + self.APP.time.get_time_now()
+            description = 'API Test test ' + self.APP.time.get_time_now()
         json_request["Description"] = description
 
         # -------Region----------------------------

@@ -9,10 +9,10 @@ class WebBase(TestBase):
         self.APP.web_any_page.open_main_page()
 
     def setup_method(self):
-        self.APP.web_any_page.open_main_page()
+        pass
 
     def teardown_method(self):
-        self.APP.web_any_page.allure_screenshot()
+        pass
 
     def teardown_class(self):
         self.APP.driver_instance.stop_driver()
