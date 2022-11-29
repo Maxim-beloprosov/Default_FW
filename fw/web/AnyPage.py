@@ -18,7 +18,7 @@ class Locator:
     master_layout_sidebar_menu_create_phone_request = (By.XPATH, '//a[@test_id = "MASTER_LAYOUT_SIDEBAR_MENU_TICKET_phoneRequest"]')
     master_layout_sidebar_menu_create_project = (By.XPATH, '//a[@test_id="MASTER_LAYOUT_SIDEBAR_MENU_CREATE_PROJECT"]')
     master_layout_sidebar_menu_create_access_list = (By.XPATH, '//a[@test_id="MASTER_LAYOUT_SIDEBAR_MENU_ACCESS_LISTS_PROJECT"]')
-    menu_sidebar_tickets = (By.XPATH, '//a[@test_id="menu-sidebar-tickets"]')
+    menu_sidebar_tickets = (By.XPATH, '//a[@test_id="menu-sidebar-request"]')
     button_menu_task_create = (By.XPATH, '//a[@test_id="buttonmenu-task-create"]')
     button_menu_access_lists_create = (By.XPATH, '//a[@test_id="buttonmenu-access-lists-create"]')
     button_menu_request_create = (By.XPATH, '//a[@test_id="buttonmenu-request-create"]')

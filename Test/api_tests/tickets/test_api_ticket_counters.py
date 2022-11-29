@@ -142,13 +142,13 @@ class TestApiCounts(ApiBase):
     def test_api_check_counts_in_request_all(self):
 
         # Получение кол-ва заявок во вкладке "Все"
-        old_counts = self.APP.api_actions_in_tickets.get_counts("Request", "All")
+        old_counts = self.APP.api_actions_in_tickets.get_counts("request", "All")
 
         # Создание заявки
         self.create_request()
 
         # Проверка, что кол-во заявок увеличилось на 1 при создании новой заявки
-        check = self.APP.api_actions_in_tickets.check_counts("Request", "All", old_counts)
+        check = self.APP.api_actions_in_tickets.check_counts("request", "All", old_counts)
 
         assert check == True
 
@@ -159,13 +159,13 @@ class TestApiCounts(ApiBase):
     def test_api_check_counts_in_request_i_am_initiator(self):
 
         # Получение кол-ва заявок во вкладке "От меня"
-        old_counts = self.APP.api_actions_in_tickets.get_counts("Request", "IAmInitiator")
+        old_counts = self.APP.api_actions_in_tickets.get_counts("request", "IAmInitiator")
 
         # Создание заявки
         self.create_request()
 
         # Проверка, что кол-во заявок увеличилось на 1 при создании новой заявки
-        check = self.APP.api_actions_in_tickets.check_counts("Request", "IAmInitiator", old_counts)
+        check = self.APP.api_actions_in_tickets.check_counts("request", "IAmInitiator", old_counts)
 
         assert check == True
 
@@ -179,7 +179,7 @@ class TestApiCounts(ApiBase):
         self.APP.api_token.get_token('test_user01')
 
         # Получение кол-ва заявок во вкладке "На мне"
-        old_counts = self.APP.api_actions_in_tickets.get_counts("Request", "IAmContractor")
+        old_counts = self.APP.api_actions_in_tickets.get_counts("request", "IAmContractor")
 
         # Создание заявки
         request = self.create_request()
@@ -188,7 +188,7 @@ class TestApiCounts(ApiBase):
         self.APP.api_actions_in_tickets.appoint_contractor(request['id'], request['syncToken'], request['initiator']['id'])
 
         # Проверка, что кол-во заявок увеличилось на 1 при создании новой заявки
-        check = self.APP.api_actions_in_tickets.check_counts("Request", "IAmContractor", old_counts)
+        check = self.APP.api_actions_in_tickets.check_counts("request", "IAmContractor", old_counts)
 
         assert check == True
 
@@ -202,13 +202,13 @@ class TestApiCounts(ApiBase):
         self.APP.api_token.get_token('test_user01')
 
         # Получение кол-ва заявок во вкладке "На моих ГО"
-        old_counts = self.APP.api_actions_in_tickets.get_counts("Request", "MyResponsibilityGroups")
+        old_counts = self.APP.api_actions_in_tickets.get_counts("request", "MyResponsibilityGroups")
 
         # Создание заявки
         self.create_request()
 
         # Проверка, что кол-во заявок увеличилось на 1 при создании новой заявки
-        check = self.APP.api_actions_in_tickets.check_counts("Request", "MyResponsibilityGroups", old_counts)
+        check = self.APP.api_actions_in_tickets.check_counts("request", "MyResponsibilityGroups", old_counts)
 
         assert check == True
 
@@ -222,7 +222,7 @@ class TestApiCounts(ApiBase):
         self.APP.api_token.get_token('test_user01')
 
         # Получение кол-ва заявок во вкладке "Мои согласования"
-        old_counts = self.APP.api_actions_in_tickets.get_counts("Request", "MyAgreements")
+        old_counts = self.APP.api_actions_in_tickets.get_counts("request", "MyAgreements")
 
         # Логинимся под другого пользователя
         self.APP.api_token.get_token('test_user05')
@@ -234,7 +234,7 @@ class TestApiCounts(ApiBase):
         self.APP.api_token.get_token('test_user01')
 
         # Проверка, что кол-во заявок увеличилось на 1 при создании новой заявки
-        check = self.APP.api_actions_in_tickets.check_counts("Request", "MyAgreements", old_counts)
+        check = self.APP.api_actions_in_tickets.check_counts("request", "MyAgreements", old_counts)
 
         assert check == True
 
@@ -247,13 +247,13 @@ class TestApiCounts(ApiBase):
         self.APP.api_token.get_token('test_user01')
 
         # Получение кол-ва заявок во вкладке "Обозреваемые"
-        old_counts = self.APP.api_actions_in_tickets.get_counts("Request", "MyObservers")
+        old_counts = self.APP.api_actions_in_tickets.get_counts("request", "MyObservers")
 
         # Создание заявки
         self.create_request({"observers": ['test_user01']})
 
         # Проверка, что кол-во заявок увеличилось на 1 при создании новой заявки
-        check = self.APP.api_actions_in_tickets.check_counts("Request", "MyObservers", old_counts)
+        check = self.APP.api_actions_in_tickets.check_counts("request", "MyObservers", old_counts)
 
         assert check == True
 
@@ -266,7 +266,7 @@ class TestApiCounts(ApiBase):
         self.APP.api_token.get_token('test_user01')
 
         # Получение кол-ва заявок во вкладке "Добавить в избранное"
-        old_counts = self.APP.api_actions_in_tickets.get_counts("Request", "MyFavourites")
+        old_counts = self.APP.api_actions_in_tickets.get_counts("request", "MyFavourites")
 
         # Создание заявки
         request = self.create_request()
@@ -275,7 +275,7 @@ class TestApiCounts(ApiBase):
         self.APP.api_requests.post_requests_id_favourites(request['id'], {'syncToken': request['syncToken']})
 
         # Проверка, что кол-во заявок увеличилось на 1 при создании новой заявки
-        check = self.APP.api_actions_in_tickets.check_counts("Request", "MyFavourites", old_counts)
+        check = self.APP.api_actions_in_tickets.check_counts("request", "MyFavourites", old_counts)
 
         assert check == True
 

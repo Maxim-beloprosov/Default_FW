@@ -4,7 +4,7 @@ import pytest
 from Test.api_tests.api_base import ApiBase
 
 
-@allure.feature('Api - Request')
+@allure.feature('Api - request')
 @allure.story('Изменение статуса заявки из статуса "Отклонено"')
 class TestApiChangeStatusTheRequestFromRejected(ApiBase):
 
@@ -32,5 +32,5 @@ class TestApiChangeStatusTheRequestFromRejected(ApiBase):
         request = self.APP.api_actions_in_request.appeal_request(request['syncToken'], request['id'])
 
         # Сравниваем значения созданного тикета с ожидаемыми значениями
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['На согласовании']

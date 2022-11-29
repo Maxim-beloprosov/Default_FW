@@ -4,7 +4,7 @@ import pytest
 from Test.api_tests.api_base import ApiBase
 
 
-@allure.feature('Api - Request')
+@allure.feature('Api - request')
 @allure.story('Создание заявки')
 class TestApiCreateRequest(ApiBase):
     def setup_method(self):
@@ -26,7 +26,7 @@ class TestApiCreateRequest(ApiBase):
         request = self.create_request({"serviceId": service_name, "descriptionContent": [description]})
 
         # Сравниваем значения созданного тикета с ожидаемыми значениями
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['gandivaService']['name'] == service_name
         assert request['descriptions'][0]['contentParts'][0]['text'] == description
         assert request['initiator']['id'] == self.users[initiator]['user_id']
@@ -49,7 +49,7 @@ class TestApiCreateRequest(ApiBase):
         request = self.create_request({"observers": [observer], "serviceId": service_name, "descriptionContent": [description]})
 
         # Сравниваем значения созданного тикета с ожидаемыми значениями
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request["observers"][0]['id'] == self.users[observer]['user_id']
         assert request['gandivaService']['name'] == service_name
         assert request['descriptions'][0]['contentParts'][0]['text'] == description
@@ -72,7 +72,7 @@ class TestApiCreateRequest(ApiBase):
         request = self.create_request({"approvers": [approver], "serviceId": service_name, "descriptionContent": [description]})
 
         # Сравниваем значения созданного тикета с ожидаемыми значениями
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request["agreements"][0]["approver"]['id'] == self.users[approver]['user_id']
         assert request['gandivaService']['name'] == service_name
         assert request['descriptions'][0]['contentParts'][0]['text'] == description
@@ -103,7 +103,7 @@ class TestApiCreateRequest(ApiBase):
         request = self.APP.api_change_request.set_contractor(request['syncToken'], request['id'], self.users[dispatcher_name]['user_id'])
 
         # Сравниваем значения созданного тикета с ожидаемыми значениями
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['gandivaService']['name'] == service_name
         assert request['descriptions'][0]['contentParts'][0]['text'] == description
         assert request['initiator']['id'] == self.users[initiator]['user_id']

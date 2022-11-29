@@ -4,7 +4,7 @@ import pytest
 from Test.api_tests.api_base import ApiBase
 
 
-@allure.feature('Api - Request')
+@allure.feature('Api - request')
 @allure.story('Изменение статуса заявки из статуса "В проверке"')
 class TestApiChangeStatusTheRequestFromResolved(ApiBase):
 
@@ -33,7 +33,7 @@ class TestApiChangeStatusTheRequestFromResolved(ApiBase):
         request = self.APP.api_actions_in_request.comeback_ticket_to_overwork(request['syncToken'], request['id'])
 
         # Сравниваем значения созданного тикета с ожидаемыми значениями
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['В работе']
 
     @allure.title('Смена статуса с "В проверке" на "В работе", когда исполнитель возвращает заявку в работу')
@@ -58,7 +58,7 @@ class TestApiChangeStatusTheRequestFromResolved(ApiBase):
         request = self.APP.api_actions_in_request.comeback_ticket_to_work(request['syncToken'], request['id'])
 
         # Сравниваем значения созданного тикета с ожидаемыми значениями
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['В работе']
 
     test_data = [1, 2, 3, 4, 5]
@@ -89,7 +89,7 @@ class TestApiChangeStatusTheRequestFromResolved(ApiBase):
         request = self.APP.api_actions_in_request.close_request(request['syncToken'], request['id'], rating)
 
         # Сравниваем значения созданного тикета с ожидаемыми значениями
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['Закрыта']
         assert request['feedback']['rating'] == rating
 

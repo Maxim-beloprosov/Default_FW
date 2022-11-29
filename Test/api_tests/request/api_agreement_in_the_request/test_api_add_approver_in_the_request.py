@@ -4,7 +4,7 @@ import pytest
 from Test.api_tests.api_base import ApiBase
 
 
-@allure.feature('Api - Request')
+@allure.feature('Api - request')
 @allure.story('Добавление согласующего"')
 class TestApiAddApproverInTheRequest(ApiBase):
 
@@ -16,7 +16,7 @@ class TestApiAddApproverInTheRequest(ApiBase):
         # Создаем заявку с согласующим
         request = self.create_request({'approvers': ['test_user01']})
         # Сравниваем полученные значения с ожидаемыми
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['На согласовании']
 
     @allure.title('Инициатор добавляет согл. после создания заявки')
@@ -30,7 +30,7 @@ class TestApiAddApproverInTheRequest(ApiBase):
         # Добавляем согласующего
         request = self.APP.api_change_request.add_approver(request['syncToken'], request['id'], 'test_user01')
         # Сравниваем получаемые значения с ожидаемыми
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['На согласовании']
 
     @allure.title('Модератор добавляет исполнителя, исполнитель добавляет согласующего')
@@ -50,7 +50,7 @@ class TestApiAddApproverInTheRequest(ApiBase):
         # Добавляем согласующего
         request = self.APP.api_change_request.add_approver(request['syncToken'], request['id'], 'test_user02')
         # Сравниваем получаемые значения с ожидаемыми
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['На согласовании']
 
     @allure.title('Согласующий добавляется из услуги')
@@ -62,7 +62,7 @@ class TestApiAddApproverInTheRequest(ApiBase):
         # Создаем заявку
         request = self.create_request({'serviceId': self.APP.group_data.service_template['AutomationService Тестовый Тип 2']['name']})
         # Сравниваем получаемые значения с ожидаемыми
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['На согласовании']
 
     @allure.title('Согласующий добавляется при смене услуги модератором')
@@ -80,7 +80,7 @@ class TestApiAddApproverInTheRequest(ApiBase):
         # Обновляем услугу
         request = self.APP.api_change_request.change_service_in_request(request['syncToken'], request['id'], services["items"][0]['id'])
         # Сравниваем получаемые значения с ожидаемыми
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['На согласовании']
 
     @allure.title('Инициатор заявки является обязат. согласующим в нормативе')
@@ -95,7 +95,7 @@ class TestApiAddApproverInTheRequest(ApiBase):
         request = self.create_request(
             {'serviceId': self.APP.group_data.service_template['AutomationService Тестовый Тип 2']['name']})
         # Сравниваем получаемые значения с ожидаемыми
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['В работе']
         assert request['agreements'] == []
 
@@ -112,7 +112,7 @@ class TestApiAddApproverInTheRequest(ApiBase):
         # Добавляем согласующего
         request = self.APP.api_change_request.add_approver(request['syncToken'], request['id'], 'test_Boss03')
         # Сравниваем получаемые значения с ожидаемыми
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['На согласовании']
         assert len(request['agreements']) == 1
 
@@ -131,7 +131,7 @@ class TestApiAddApproverInTheRequest(ApiBase):
         # Добавляем согласующего
         request = self.APP.api_change_request.add_approver(request['syncToken'], request['id'], 'test_Boss03')
         # Сравниваем получаемые значения с ожидаемыми
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['На согласовании']
 
 

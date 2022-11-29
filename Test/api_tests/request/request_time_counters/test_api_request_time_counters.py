@@ -6,7 +6,7 @@ import pytest
 from Test.api_tests.api_base import ApiBase
 
 
-@allure.feature('Api - Request')
+@allure.feature('Api - request')
 @allure.story('Счётчики времени')
 class TestApiRequestTimeCounters(ApiBase):
 

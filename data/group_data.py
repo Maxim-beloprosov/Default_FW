@@ -64,7 +64,7 @@ class GroupData:
     }
 
     g1_Status_ticket = {
-        'Request': {
+        'request': {
             'ENG': {
                 'None': 0,
                 'New': 1,

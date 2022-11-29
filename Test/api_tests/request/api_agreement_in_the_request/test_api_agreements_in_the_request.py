@@ -4,7 +4,7 @@ import pytest
 from Test.api_tests.api_base import ApiBase
 
 
-@allure.feature('Api - Request')
+@allure.feature('Api - request')
 @allure.story('Простые и сложные согласования"')
 class TestApiAgreementsInTheRequest(ApiBase):
 
@@ -23,7 +23,7 @@ class TestApiAgreementsInTheRequest(ApiBase):
         # Согласуем заявку
         request = self.APP.api_actions_in_request.approve_request(request['syncToken'], request['id'])
         # Сравниваем получаемые значения с ожидаемыми
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['В работе']
 
     @allure.title('Два согласующих, один согласует.')
@@ -41,7 +41,7 @@ class TestApiAgreementsInTheRequest(ApiBase):
         # Согласуем заявку
         request = self.APP.api_actions_in_request.approve_request(request['syncToken'], request['id'])
         # Сравниваем получаемые значения с ожидаемыми
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['На согласовании']
 
     @allure.title('Согласованная заявка переходит в статус "В работе"')
@@ -59,7 +59,7 @@ class TestApiAgreementsInTheRequest(ApiBase):
         # Согласуем заявку
         request = self.APP.api_actions_in_request.approve_request(request['syncToken'], request['id'])
         # Сравниваем получаемые значения с ожидаемыми
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['В работе']
 
     @allure.title('Один согласующий, отклоняет заявку.')
@@ -77,7 +77,7 @@ class TestApiAgreementsInTheRequest(ApiBase):
         # Отклоняем заявку
         request = self.APP.api_actions_in_request.reject_request(request['syncToken'], request['id'])
         # Сравниваем получаемые значения с ожидаемыми
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['Отклонено']
 
     @allure.title('Согласующие подчиненный и начальник. Подчиненный отклоняет.')
@@ -95,7 +95,7 @@ class TestApiAgreementsInTheRequest(ApiBase):
         # Отклоняем заявку
         request = self.APP.api_actions_in_request.reject_request(request['syncToken'], request['id'])
         # Сравниваем получаемые значения с ожидаемыми
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['На согласовании']
 
     @allure.title('Согласующие подчиненный и начальник. Подчиненный отклоняет, начальник согласует.')
@@ -117,7 +117,7 @@ class TestApiAgreementsInTheRequest(ApiBase):
         # Согласуем заявку
         request = self.APP.api_actions_in_request.approve_request(request['syncToken'], request['id'])
         # Сравниваем получаемые значения с ожидаемыми
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['В работе']
 
     @allure.title('Согласующий отклоняет, инициатор апеллирует.')
@@ -141,7 +141,7 @@ class TestApiAgreementsInTheRequest(ApiBase):
         # Формируем список id всех согласующих
         approvers_id = self.list_id_all_approver(request)
         # Сравниваем получаемые значения с ожидаемыми
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['На согласовании']
         assert self.APP.group_data.users['test_Boss02']['user_id'] in approvers_id
 
@@ -164,7 +164,7 @@ class TestApiAgreementsInTheRequest(ApiBase):
         # Отклоняем заявку
         request = self.APP.api_actions_in_request.reject_request(request['syncToken'], request['id'])
         # Сравниваем получаемые значения с ожидаемыми
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['Отклонено']
 
     @allure.title('Два согласующих: подчиненный - начальник. подчиненный согласует, начальник отклоняет.')
@@ -186,7 +186,7 @@ class TestApiAgreementsInTheRequest(ApiBase):
         # Отклоняем заявку
         request = self.APP.api_actions_in_request.reject_request(request['syncToken'], request['id'])
         # Сравниваем получаемые значения с ожидаемыми
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['Отклонено']
 
     @allure.title('Два согласующих: подчиненный - начальник. подчиненный и начальник согласуют, добавляется подчиненный - он отклоняет')
@@ -214,7 +214,7 @@ class TestApiAgreementsInTheRequest(ApiBase):
         # Отклоняем заявку
         request = self.APP.api_actions_in_request.reject_request(request['syncToken'], request['id'])
         # Сравниваем получаемые значения с ожидаемыми
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['Отклонено']
 
     @allure.title('Проверка возможности согласования пользователей, не принимавших решение ранее при апелляции (При согласовании типа "подчиненный-начальник")')
@@ -234,7 +234,7 @@ class TestApiAgreementsInTheRequest(ApiBase):
         # Апеллируем
         request = self.APP.api_actions_in_request.appeal_request(request['syncToken'], request['id'])
         # Сравниваем получаемые значения с ожидаемыми
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['На согласовании']
         assert len(request['agreements']) == 2
         assert self.APP.group_data.users['test_user01']['user_id'] in self.APP.api_change_request.get_list_id_all_approvers(request['agreements'])
@@ -261,7 +261,7 @@ class TestApiAgreementsInTheRequest(ApiBase):
         # Согласуем заявку
         request = self.APP.api_actions_in_request.approve_request(request['syncToken'], request['id'])
         # Сравниваем получаемые значения с ожидаемыми
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['В работе']
 
     @allure.title('Согласующие: подчиненный и начальник, начальник начальника. Начальник отклоняет.')
@@ -279,7 +279,7 @@ class TestApiAgreementsInTheRequest(ApiBase):
         # Отклоняем заявку
         request = self.APP.api_actions_in_request.reject_request(request['syncToken'], request['id'])
         # Сравниваем получаемые значения с ожидаемыми
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['На согласовании']
         assert request['agreements'][0]['status'] == 'Pending'
         assert request['agreements'][1]['status'] == 'Rejected'
@@ -300,7 +300,7 @@ class TestApiAgreementsInTheRequest(ApiBase):
         # Согласуем заявку
         request = self.APP.api_actions_in_request.approve_request(request['syncToken'], request['id'])
         # Сравниваем получаемые значения с ожидаемыми
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['На согласовании']
 
     @allure.title('Повторное согласование, добавляется подчиненный, отклоняет.')
@@ -324,7 +324,7 @@ class TestApiAgreementsInTheRequest(ApiBase):
         # Отклоняем заявку
         request = self.APP.api_actions_in_request.reject_request(request['syncToken'], request['id'])
         # Сравниваем получаемые значения с ожидаемыми
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['Отклонено']
 
     @allure.title('При смене норматива должны остаться согласующие, которые еще не приняли решение.')
@@ -346,7 +346,7 @@ class TestApiAgreementsInTheRequest(ApiBase):
         # Формируем список id всех согласующих
         approvers_id = self.list_id_all_approver(request)
         # Сравниваем получаемые значения с ожидаемыми
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['На согласовании']
         assert self.APP.group_data.users['test_user01']['user_id'] in approvers_id
 
@@ -375,7 +375,7 @@ class TestApiAgreementsInTheRequest(ApiBase):
         # Формируем список id всех согласующих
         approvers_id = self.list_id_all_approver(request)
         # Сравниваем получаемые значения с ожидаемыми
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['На согласовании']
         assert self.APP.group_data.users['test_user01']['user_id'] in approvers_id
 
@@ -400,7 +400,7 @@ class TestApiAgreementsInTheRequest(ApiBase):
         # Апеллируем
         request = self.APP.api_actions_in_request.appeal_request(request['syncToken'], request['id'])
         # Сравниваем получаемые значения с ожидаемыми
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['В работе']
 
     @allure.title('4 согласующих, 1 отменил. Проверяем, что апелляция отработала корректно.')
@@ -424,7 +424,7 @@ class TestApiAgreementsInTheRequest(ApiBase):
         # Формируем список id всех согласующих
         approvers_id = self.list_id_all_approver(request)
         # Сравниваем получаемые значения с ожидаемыми
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['На согласовании']
         assert self.APP.group_data.users['test_user05']['user_id'] not in approvers_id
         assert self.APP.group_data.users['test_Boss02']['user_id'] in approvers_id
@@ -458,7 +458,7 @@ class TestApiAgreementsInTheRequest(ApiBase):
         # Формируем список id всех согласующих
         approvers_id = self.list_id_all_approver(request)
         # Сравниваем получаемые значения с ожидаемыми
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['На согласовании']
         assert self.APP.group_data.users['test_user05']['user_id'] not in approvers_id
         assert self.APP.group_data.users['test_user01']['user_id'] not in approvers_id
@@ -480,7 +480,7 @@ class TestApiAgreementsInTheRequest(ApiBase):
         # Отклоняем заявку
         request = self.APP.api_actions_in_request.reject_request(request['syncToken'], request['id'])
         # Сравниваем получаемые значения с ожидаемыми
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['На согласовании']
 
     @allure.title('Согласующие: подчиненный и начальник, подчиненный задал вопрос исп. и отклонил.')
@@ -500,7 +500,7 @@ class TestApiAgreementsInTheRequest(ApiBase):
         # Отклоняем заявку
         request = self.APP.api_actions_in_request.reject_request(request['syncToken'], request['id'])
         # Сравниваем получаемые значения с ожидаемыми
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['На согласовании']
 
     @allure.title('Согласующие: подчиненный и начальник, подчиненный задал вопрос исп., начальник согласовал.')
@@ -522,7 +522,7 @@ class TestApiAgreementsInTheRequest(ApiBase):
         # Согласуем заявку
         request = self.APP.api_actions_in_request.approve_request(request['syncToken'], request['id'])
         # Сравниваем получаемые значения с ожидаемыми
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['На уточнении у исп.']
 
     @allure.title(
@@ -545,7 +545,7 @@ class TestApiAgreementsInTheRequest(ApiBase):
         # Апеллируем
         request = self.APP.api_actions_in_request.appeal_request(request['syncToken'], request['id'])
         # Сравниваем получаемые значения с ожидаемыми
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['На согласовании']
         assert len(request['agreements']) == 2
         assert request['agreements'][1]['approver']['id'] == self.APP.group_data.users['test_user01']['user_id']

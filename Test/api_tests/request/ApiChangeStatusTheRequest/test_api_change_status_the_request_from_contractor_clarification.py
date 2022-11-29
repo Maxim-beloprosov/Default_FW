@@ -4,7 +4,7 @@ import pytest
 from Test.api_tests.api_base import ApiBase
 
 
-@allure.feature('Api - Request')
+@allure.feature('Api - request')
 @allure.story('Изменение статуса заявки из статуса "На уточнении у исполнителя"')
 class TestApiChangeStatusTheRequestFromContractorClarification(ApiBase):
 
@@ -42,7 +42,7 @@ class TestApiChangeStatusTheRequestFromContractorClarification(ApiBase):
         request = self.APP.api_clarifications.contractor_to_answer_clarification(request['syncToken'], request['id'], request['clarifications'][0]['id'])
 
         # Сравниваем значения созданного тикета с ожидаемыми значениями
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['В работе']
 
     @allure.title('Смена статуса с "На уточнении у исполнителя" на "В работе", когда согласующий принял положительное решение')
@@ -72,7 +72,7 @@ class TestApiChangeStatusTheRequestFromContractorClarification(ApiBase):
         request = self.APP.api_actions_in_request.approve_request(request['syncToken'], request['id'])
 
         # Сравниваем значения созданного тикета с ожидаемыми значениями
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['В работе']
 
     @allure.title('Смена статуса с "На уточнении у Исполнителя" на "Отменено", когда исполнитель не назначен')
@@ -99,7 +99,7 @@ class TestApiChangeStatusTheRequestFromContractorClarification(ApiBase):
         request = self.APP.api_actions_in_request.cancel_request(request['syncToken'], request['id'])
 
         # Сравниваем значения созданного тикета с ожидаемыми значениями
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['Отменено']
 
     @allure.title('Смена статуса с "На уточнении у Исполнителя" на "В ожидании", когда исполнитель ответил на уточнение')
@@ -136,7 +136,7 @@ class TestApiChangeStatusTheRequestFromContractorClarification(ApiBase):
         request = self.APP.api_clarifications.contractor_to_answer_clarification(request['syncToken'], request['id'], request['clarifications'][0]['id'])
 
         # Сравниваем значения созданного тикета с ожидаемыми значениями
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['В ожидании']
 
     @allure.title('Смена статуса с "На уточнении у Исполнителя" на "На согласовании", когда исполнитель ответил на уточнение при активном согласовании')
@@ -170,7 +170,7 @@ class TestApiChangeStatusTheRequestFromContractorClarification(ApiBase):
         request = self.APP.api_clarifications.contractor_to_answer_clarification(request['syncToken'], request['id'], request['clarifications'][0]['id'])
 
         # Сравниваем значения созданного тикета с ожидаемыми значениями
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['На согласовании']
 
     @allure.title('Смена статуса с "На уточнении у Исполнителя" на "Отклонено", когда согласующий принял отрицательное решение')
@@ -200,5 +200,5 @@ class TestApiChangeStatusTheRequestFromContractorClarification(ApiBase):
         request = self.APP.api_actions_in_request.reject_request(request['syncToken'], request['id'])
 
         # Сравниваем значения созданного тикета с ожидаемыми значениями
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['Отклонено']

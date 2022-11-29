@@ -4,7 +4,7 @@ import pytest
 from Test.api_tests.api_base import ApiBase
 
 
-@allure.feature('Api - Request')
+@allure.feature('Api - request')
 @allure.story('Изменение статуса заявки из статуса "В работе"')
 class TestApiChangeStatusTheRequestFromWork(ApiBase):
 
@@ -21,7 +21,7 @@ class TestApiChangeStatusTheRequestFromWork(ApiBase):
         request = self.APP.api_actions_in_request.cancel_request(request['syncToken'], request['id'])
 
         # Сравниваем значения созданного тикета с ожидаемыми значениями
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['Отменено']
 
     @allure.title('Смена статуса с "В работе" на "Отменено", когда инициатор РАВЕН исполнителю')
@@ -43,7 +43,7 @@ class TestApiChangeStatusTheRequestFromWork(ApiBase):
         request = self.APP.api_actions_in_request.cancel_request(request['syncToken'], request['id'])
 
         # Сравниваем значения созданного тикета с ожидаемыми значениями
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['Отменено']
 
     @allure.title('Смена статуса с "В работе" на "В проверке"')
@@ -65,7 +65,7 @@ class TestApiChangeStatusTheRequestFromWork(ApiBase):
         request = self.APP.api_actions_in_request.send_request_to_resolved(request['syncToken'], request['id'])
 
         # Сравниваем значения созданного тикета с ожидаемыми значениями
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['В проверке']
 
     @allure.title('Смена статуса с "В работе" на "В ожидании"')
@@ -81,7 +81,7 @@ class TestApiChangeStatusTheRequestFromWork(ApiBase):
         request = self.APP.api_change_request.change_begin_date(request['syncToken'], request['id'], 7)
 
         # Сравниваем значения созданного тикета с ожидаемыми значениями
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['В ожидании']
 
     @allure.title('Смена статуса с "В работе" на "На согласовании"')
@@ -97,7 +97,7 @@ class TestApiChangeStatusTheRequestFromWork(ApiBase):
         request = self.APP.api_change_request.add_approver(request['syncToken'], request['id'], 'test_user05')
 
         # Сравниваем значения созданного тикета с ожидаемыми значениями
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['На согласовании']
 
     @allure.title('Смена статуса с "В работе" на "На уточнении у Инициатора", когда уточнение задает участник ГО')
@@ -116,7 +116,7 @@ class TestApiChangeStatusTheRequestFromWork(ApiBase):
         request = self.APP.api_clarifications.ask_to_initiator_clarification(request['syncToken'], request['id'])
 
         # Сравниваем значения созданного тикета с ожидаемыми значениями
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['На уточнении у иниц.']
 
     @allure.title('Смена статуса с "В работе" на "На уточнении у Инициатора", когда уточнение задает исполнитель')
@@ -138,6 +138,6 @@ class TestApiChangeStatusTheRequestFromWork(ApiBase):
         request = self.APP.api_clarifications.ask_to_initiator_clarification(request['syncToken'], request['id'])
 
         # Сравниваем значения созданного тикета с ожидаемыми значениями
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['На уточнении у иниц.']
 

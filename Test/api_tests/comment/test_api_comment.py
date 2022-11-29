@@ -8,7 +8,7 @@ from Test.api_tests.api_base import ApiBase
 @allure.story('Создание комментария, редактирование комментария, просмотр комментариев')
 class TestApiComment(ApiBase):
 
-    test_data = ['Request', 'Task', 'Project']
+    test_data = ['request', 'Task', 'Project']
 
     @allure.title('Создание комментария к тикету.')
     @allure.severity(allure.severity_level.CRITICAL)
@@ -103,7 +103,7 @@ class TestApiComment(ApiBase):
         # Читаем все комментарии
         self.APP.api_comments.post_comments_read_all()
         # Получаем список непрочитанных комментариев
-        comment_list = self.APP.api_actions_in_comment.list_of_unread_comments(['Request', 'Task', 'Project'])
+        comment_list = self.APP.api_actions_in_comment.list_of_unread_comments(['request', 'Task', 'Project'])
         # Сравниваем получаемые значения с ожидаемыми
         assert comment_list['items'] == []
 

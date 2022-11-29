@@ -211,15 +211,15 @@ class TestApiTickets(ApiBase):
     def test_api_filter_request_tab_type_param_request(self):
 
         # Создание заявки
-        created_request = self.create_tickets({}, ticket_type='Request')
+        created_request = self.create_tickets({}, ticket_type='request')
 
         # Фильтрация по параметру "Заявка"
-        filter_request = self.APP.api_tickets_filtration.filter_tickets_by_tab_ticket_type('Request', created_request['createdDate'], 5)
+        filter_request = self.APP.api_tickets_filtration.filter_tickets_by_tab_ticket_type('request', created_request['createdDate'], 5)
 
         # Проверка остались ли после фильтрации только Заявки
-        tickets_type_request = self.filter_find_another_response_in_ticket(filter_request['items'], 'ticketType', 'Request')
+        tickets_type_request = self.filter_find_another_response_in_ticket(filter_request['items'], 'ticketType', 'request')
 
-        assert created_request['ticketType'] == 'Request'
+        assert created_request['ticketType'] == 'request'
         assert tickets_type_request
 
     @allure.title('Фильтрация тикетов по табу "Тип" по параметру "Задача"')
@@ -487,7 +487,7 @@ class TestApiTickets(ApiBase):
     def test_api_filter_tickets_tab_service(self):
 
         # Создание заявки
-        created_request = self.create_tickets({}, ticket_type='Request')
+        created_request = self.create_tickets({}, ticket_type='request')
 
         # Фильтрация по параметру "Услуга"
         filter_tickets = self.APP.api_tickets_filtration.filter_tickets_by_tab_service(created_request['gandivaService']['id'], created_request['createdDate'], 5)
@@ -495,7 +495,7 @@ class TestApiTickets(ApiBase):
         # Проверка остались ли после фильтрации тикеты только в с определённой услугой
         tickets_equal_id_service = self.filter_find_another_id_response_in_ticket(filter_tickets['items'], 'gandivaService', created_request['gandivaService']['id'])
 
-        assert created_request['ticketType'] == 'Request'
+        assert created_request['ticketType'] == 'request'
         assert tickets_equal_id_service
 
     @allure.title('Фильтрация тикетов по табу "Дата создания"')
@@ -646,7 +646,7 @@ class TestApiTickets(ApiBase):
     def test_api_filter_tickets_tab_contractor_without_contractor(self):
 
         # Создание заявки
-        created_request = self.create_tickets({}, ticket_type='Request')
+        created_request = self.create_tickets({}, ticket_type='request')
 
         # Фильтрация по параметру "Без исполнителя"
         filter_tickets = self.APP.api_tickets_filtration.filter_tickets_by_tab_contractor_is_contractor(False, created_request['createdDate'], 5)
@@ -654,7 +654,7 @@ class TestApiTickets(ApiBase):
         # Проверка отсутствует ли поле с исполнителем в json фильтрации
         tickets_not_have_contractor = self.filter_response_not_have_element_in_json(filter_tickets['items'], 'contractor')
 
-        assert created_request['ticketType'] == 'Request'
+        assert created_request['ticketType'] == 'request'
         assert tickets_not_have_contractor
 
     @allure.title('Фильтрация тикетов по табу "Исполнитель" по параметру "С исполнителем"')
@@ -697,7 +697,7 @@ class TestApiTickets(ApiBase):
     def test_api_filter_tickets_tab_responsibility_group(self):
 
         # Создание заявки
-        created_request = self.create_tickets({}, ticket_type='Request')
+        created_request = self.create_tickets({}, ticket_type='request')
 
         # Фильтрация по табу "Группа ответственности"
         filter_tickets = self.APP.api_tickets_filtration.filter_tickets_by_tab_responsibility_group(created_request['responsibilityGroup']['id'], created_request['createdDate'], 5)
@@ -705,7 +705,7 @@ class TestApiTickets(ApiBase):
         # Проверка, что все тикеты имеют нужную группу ответственности
         all_tickets_have_correct_responsibility_group = self.filter_correct_responsibility_group(filter_tickets['items'], created_request['responsibilityGroup']['id'])
 
-        assert created_request['ticketType'] == 'Request'
+        assert created_request['ticketType'] == 'request'
         assert all_tickets_have_correct_responsibility_group
 
     @allure.title('Фильтрация тикетов по табу "Согласующие"')

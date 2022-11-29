@@ -4,7 +4,7 @@ import pytest
 from Test.api_tests.api_base import ApiBase
 
 
-@allure.feature('Api - Request')
+@allure.feature('Api - request')
 @allure.story('Изменение статуса заявки из статуса "Новая"')
 class TestApiChangeStatusTheRequestFromNew(ApiBase):
 
@@ -18,7 +18,7 @@ class TestApiChangeStatusTheRequestFromNew(ApiBase):
         request = self.create_request()
 
         # Сравниваем значения созданного тикета с ожидаемыми значениями
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['В работе']
 
     @allure.title('Смена статуса с "Новая" на "На согласовании"')
@@ -31,7 +31,7 @@ class TestApiChangeStatusTheRequestFromNew(ApiBase):
         request = self.create_request({"approvers": ['test_user05']})
 
         # Сравниваем значения созданного тикета с ожидаемыми значениями
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['На согласовании']
 
     @allure.title('Смена статуса с "Новая" на "В проверке"')
@@ -64,7 +64,7 @@ class TestApiChangeStatusTheRequestFromNew(ApiBase):
         request = self.APP.api_requests.post_requests_phone(request_body)
 
         # Сравниваем значения созданного тикета с ожидаемыми значениями
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['В проверке']
 
     @allure.title('Смена статуса с "Новая" на "В ожидании"')
@@ -77,5 +77,5 @@ class TestApiChangeStatusTheRequestFromNew(ApiBase):
         request = self.create_request({"beginDate": 7})
 
         # Сравниваем значения созданного тикета с ожидаемыми значениями
-        assert request['ticketType'] == 'Request'
+        assert request['ticketType'] == 'request'
         assert request['status'] == self.APP.group_data.Status_ticket['ENG']['В ожидании']
