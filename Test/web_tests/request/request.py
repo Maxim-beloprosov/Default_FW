@@ -9,8 +9,6 @@ from Test.web_tests.web_base import WebBase
 class TestCreateRequest(WebBase):
 
     @allure.title('Создание заявки с выбором услуги из дерева')
-    @allure.severity(allure.severity_level.CRITICAL)
-    @pytest.mark.CRITICAL
     @pytest.mark.WebTest
     def test_create_request_first(self):
         # Переходим к созданию заявки
