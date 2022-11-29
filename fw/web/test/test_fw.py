@@ -20,6 +20,7 @@ class TestFW(WebBase):
 
     @allure.step('Нажимаем кнопку поиска')
     def click_button_search(self):
+        # Добавил тайм-аут, т.к. там прогружается анимация на результаты поиска
         time.sleep(1)
         self.click_element(Locator.button_search)
 
