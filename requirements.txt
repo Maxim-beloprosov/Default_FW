@@ -1,0 +1,15 @@
+oidcrp
+selenium
+requests
+pytest
+allure-pytest
+pytest-rerunfailures
+jsondiff
+pathlib
+jsonschema
+pytest-xdist
+pyperclip
+python-magic-bin==0.4.14
+Appium-Python-Client
+psycopg2
+pyodbc

@@ -1,0 +1,84 @@
+table
+{
+    width: 80%;
+    border: 2px double black;
+    border-collapse: collapse;
+}
+
+th
+{
+    text-align: left; /* Выравнивание по левому краю */
+    background: #ccc; /* Цвет фона ячеек */
+}
+
+td
+{
+    border: 1px solid black; /* Граница вокруг ячеек */
+}
+
+
+.Pass
+{
+	color:#38761d;
+    background:#b6d7a8;
+}
+
+.Fail
+{
+	color:#990000;
+    background:#ea9999;
+}
+
+.ExceptionMessage
+{
+    color:#000000;
+    background:#FFCCCC;
+    font-size: 10pt;
+}
+
+.Screenshot
+{
+    color:#000000;
+    background:#ccffcc;
+    font-size: 10pt;
+}
+
+.ExceptionTrace
+{
+    color:#000000;
+    background:#FFCCCC;
+    font-size: 10pt;
+}
+
+.technicalInformation
+{
+    color:#494949;
+    font-size: 9pt;
+    text-align: left;
+    font-weight: bold;
+}
+
+.getTag
+{
+    color:#494949;
+    font-size: 9pt;
+    text-align: left;
+    font-weight: bold;
+
+}
+
+.config
+{
+
+}
+
+.sectionOfTheTable
+{
+    background:#FFFFCC;
+}
+
+img
+{
+    height: 100%;
+    width: 100%;
+}
