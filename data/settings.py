@@ -38,7 +38,7 @@ class Settings:
             'SQL_SERVER': {
                 'TypeSQL': '',
                 'SERVER': '',
-                'PORT': 2424,
+                'PORT': '',
                 'DATABASE': '',
                 'login': '',
                 'password': '',
