@@ -8,12 +8,9 @@ from fw.fw_base import FWBase
 class SQLBase(FWBase):
 
     @allure.step('sql_query')
-    def sql_query(self, SQL_query, gandiva_lvl='G1'):
+    def sql_query(self, SQL_query):
 
-        if gandiva_lvl == 'G1':
-            SQL_SERVER = self.manager.g1_settings.GLOBAL[self.manager.g1_settings.branch]['SQL_SERVER']
-        else:
-            SQL_SERVER = self.manager.settings.GLOBAL[self.manager.settings.branch]['SQL_SERVER']
+        SQL_SERVER = self.manager.settings.GLOBAL[self.manager.settings.branch]['SQL_SERVER']
 
         if SQL_SERVER['TypeSQL'] == 'SQL_Server':
             connect_string = 'DRIVER=' + SQL_SERVER['DRIVER'] +\
@@ -56,12 +53,9 @@ class SQLBase(FWBase):
                 conn.close()
 
     @allure.step('SQL_query_INSERT')
-    def sql_query_INSERT(self, SQL_query, gandiva_lvl='G1'):
+    def sql_query_INSERT(self, SQL_query):
 
-        if gandiva_lvl == 'G1':
-            SQL_SERVER = self.manager.g1_settings.GLOBAL[self.manager.g1_settings.branch]['SQL_SERVER']
-        else:
-            SQL_SERVER = self.manager.settings.GLOBAL[self.manager.settings.branch]['SQL_SERVER']
+        SQL_SERVER = self.manager.settings.GLOBAL[self.manager.settings.branch]['SQL_SERVER']
 
         if SQL_SERVER['TypeSQL'] == 'SQL_Server':
             SQL_query = SQL_query + '; COMMIT'

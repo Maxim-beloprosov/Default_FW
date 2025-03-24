@@ -4,8 +4,8 @@ from email.mime.text import MIMEText
 
 
 class WorkWithEmail:
-    sender = 'fl1670@internet.ru'
-    pas = '9TrjhNBy0xzEWGJt9yBM'
+    sender = 'email'
+    pas = 'password'
 
     def send_mail(self):
         # server = smtplib.SMTP('smtp.mail.ru', 587)

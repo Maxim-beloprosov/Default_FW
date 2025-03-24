@@ -1,1 +1,0 @@
-select maker from product where [type] like 'Printer'
